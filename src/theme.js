@@ -6,13 +6,16 @@ export default {
     logo: 'Raleway, sans-serif',
   },
   colors: {
-    text: '#000',
+    text: '#333333',
     background: '#fff',
-    primary: '#33e',
+    primary: '#2F80ED',
+    gray: '#BDBDBD',
+    lightGray: '#828282',
   },
   styles: {
     root: {
       fontFamily: 'body',
+      color: 'text',
     },
   },
 }

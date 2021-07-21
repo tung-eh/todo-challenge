@@ -7,8 +7,16 @@ import theme from '../theme'
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Flex m={4} sx={{ flexDirection: 'column', alignItems: 'center' }}>
-        <Heading mb={4} sx={{ fontFamily: 'logo', fontSize: 5 }}>
+      <Flex
+        p={36}
+        m="auto"
+        sx={{
+          flexDirection: 'column',
+          alignItems: 'center',
+          maxWidth: 700,
+        }}
+      >
+        <Heading mb={56} sx={{ fontFamily: 'logo', fontSize: 5 }}>
           #todo
         </Heading>
         <TodoList />
