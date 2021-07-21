@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Flex, IconButton, Label, Text } from 'theme-ui'
+import { Box, Checkbox, Flex, IconButton, Label, Text } from 'theme-ui'
 import { MdDelete } from 'react-icons/md'
 import React from 'react'
 
@@ -16,49 +16,22 @@ const TodoItem = ({ details, done, id, onToggleState, onDelete }) => (
   </Flex>
 )
 
-const List = ({
-  onAddItem,
-  items,
-  onDeleteItem,
-  onToggleItemState,
-  onDeleteCompletedItems,
-}) => {
-  return (
+const List = ({ onAddItem, items, onDeleteItem, onToggleItemState }) => {
+  return items.length ? (
     <>
-      {items.length ? (
-        <>
-          {items.map((item) => (
-            <TodoItem
-              key={item.id}
-              {...item}
-              onToggleState={() => onToggleItemState(item.id)}
-              onDelete={() => onDeleteItem(item.id)}
-            />
-          ))}
-          {onDeleteCompletedItems && (
-            <Flex sx={{ justifyContent: 'flex-end', pt: 3 }}>
-              <Button
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1,
-                  bg: 'danger',
-                  fontSize: 0,
-                  p: '12px 24px',
-                }}
-                onClick={onDeleteCompletedItems}
-              >
-                <MdDelete /> delete all
-              </Button>
-            </Flex>
-          )}
-        </>
-      ) : (
-        <Box sx={{ textAlign: 'center', color: 'gray', fontSize: 1 }}>
-          There is nothing here
-        </Box>
-      )}
+      {items.map((item) => (
+        <TodoItem
+          key={item.id}
+          {...item}
+          onToggleState={() => onToggleItemState(item.id)}
+          onDelete={() => onDeleteItem(item.id)}
+        />
+      ))}
     </>
+  ) : (
+    <Box sx={{ textAlign: 'center', color: 'gray', fontSize: 1 }}>
+      There is nothing here
+    </Box>
   )
 }
 

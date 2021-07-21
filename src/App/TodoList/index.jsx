@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+import DeleteAllButton from './DeleteAllButton'
 import List from './List'
 import Tabs from './Tabs'
 
@@ -65,12 +66,16 @@ const TodoList = () => {
     {
       label: 'Completed',
       content: (
-        <List
-          items={todos.filter((item) => item.done)}
-          onToggleItemState={toggleTodoState}
-          onDeleteItem={deleteTodo}
-          onDeleteCompletedItems={deleteCompletedTodos}
-        />
+        <>
+          <List
+            items={todos.filter((item) => item.done)}
+            onToggleItemState={toggleTodoState}
+            onDeleteItem={deleteTodo}
+          />
+          {todos.some((item) => item.done) && (
+            <DeleteAllButton onClick={deleteCompletedTodos} />
+          )}
+        </>
       ),
     },
   ]
