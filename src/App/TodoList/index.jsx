@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import DeleteAllButton from './DeleteAllButton'
 import List from './List'
+import NewTodoForm from './NewTodoForm'
 import Tabs from './Tabs'
 
 let countItem = 5
@@ -46,21 +47,27 @@ const TodoList = () => {
     {
       label: 'All',
       content: (
-        <List
-          items={todos}
-          onToggleItemState={toggleTodoState}
-          onDeleteItem={deleteTodo}
-        />
+        <>
+          <NewTodoForm onSubmit={addTodo} />
+          <List
+            items={todos}
+            onToggleItemState={toggleTodoState}
+            onDeleteItem={deleteTodo}
+          />
+        </>
       ),
     },
     {
       label: 'Active',
       content: (
-        <List
-          items={todos.filter((item) => !item.done)}
-          onToggleItemState={toggleTodoState}
-          onDeleteItem={deleteTodo}
-        />
+        <>
+          <NewTodoForm onSubmit={addTodo} />
+          <List
+            items={todos.filter((item) => !item.done)}
+            onToggleItemState={toggleTodoState}
+            onDeleteItem={deleteTodo}
+          />
+        </>
       ),
     },
     {

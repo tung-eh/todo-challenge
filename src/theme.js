@@ -19,6 +19,11 @@ export default {
       color: 'text',
     },
   },
+  forms: {
+    input: {
+      fontFamily: 'body',
+    },
+  },
   buttons: {
     primary: {
       fontFamily: 'body',
