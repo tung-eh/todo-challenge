@@ -11,11 +11,21 @@ export default {
     primary: '#2F80ED',
     gray: '#BDBDBD',
     lightGray: '#828282',
+    danger: '#EB5757',
   },
   styles: {
     root: {
       fontFamily: 'body',
       color: 'text',
+    },
+  },
+  buttons: {
+    primary: {
+      fontFamily: 'body',
+      cursor: 'pointer',
+    },
+    icon: {
+      cursor: 'pointer',
     },
   },
 }

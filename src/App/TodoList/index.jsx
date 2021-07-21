@@ -1,12 +1,78 @@
-import React from 'react'
+import React, { useState } from 'react'
 
+import List from './List'
 import Tabs from './Tabs'
 
+let countItem = 5
+
 const TodoList = () => {
+  const [todos, setTodos] = useState([
+    {
+      details: 'Do coding challenge 1',
+      done: false,
+      id: 0,
+    },
+    {
+      details: 'Do coding challenge 2',
+      done: false,
+      id: 1,
+    },
+    { details: 'Eat', done: true, id: 2 },
+    { details: 'Sleep', done: true, id: 3 },
+    { details: 'Code', done: true, id: 4 },
+  ])
+
+  const addTodo = (todo) =>
+    setTodos([{ details: todo, done: false, id: countItem++ }, ...todos])
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id))
+  }
+
+  const toggleTodoState = (id) => {
+    const index = todos.findIndex((todo) => todo.id === id)
+
+    setTodos([
+      ...todos.slice(0, index),
+      { ...todos[index], done: !todos[index].done },
+      ...todos.slice(index + 1),
+    ])
+  }
+
+  const deleteCompletedTodos = () =>
+    setTodos(todos.filter((todo) => !todo.done))
+
   const tabs = [
-    { label: 'All', content: 'All todos' },
-    { label: 'Active', content: 'Active todos' },
-    { label: 'Completed', content: 'Completed todos' },
+    {
+      label: 'All',
+      content: (
+        <List
+          items={todos}
+          onToggleItemState={toggleTodoState}
+          onDeleteItem={deleteTodo}
+        />
+      ),
+    },
+    {
+      label: 'Active',
+      content: (
+        <List
+          items={todos.filter((item) => !item.done)}
+          onToggleItemState={toggleTodoState}
+          onDeleteItem={deleteTodo}
+        />
+      ),
+    },
+    {
+      label: 'Completed',
+      content: (
+        <List
+          items={todos.filter((item) => item.done)}
+          onToggleItemState={toggleTodoState}
+          onDeleteItem={deleteTodo}
+          onDeleteCompletedItems={deleteCompletedTodos}
+        />
+      ),
+    },
   ]
 
   return <Tabs items={tabs} />

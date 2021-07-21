@@ -34,6 +34,7 @@ const Tabs = ({ items, defaultIndex = 0 }) => {
   return (
     <>
       <Grid
+        mb={3}
         sx={{
           width: '100%',
           gridTemplateColumns: 'repeat(3, 1fr)',
@@ -46,6 +47,7 @@ const Tabs = ({ items, defaultIndex = 0 }) => {
       >
         {items.map(({ label }, index) => (
           <TabItem
+            key={index}
             label={label}
             active={tabIndex === index}
             onClick={() => setTabIndex(index)}
